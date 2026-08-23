@@ -128,6 +128,12 @@ img { max-width: 100%; display: block; }
   margin-top: 6px; font-size: 14px; font-weight: 600; color: var(--teal-dark);
   background: var(--teal-soft); padding: 8px 12px; border-radius: 10px;
 }
+.case__link {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 4px;
+  font-size: 14px; font-weight: 700; color: var(--teal); text-decoration: none;
+  transition: gap .15s ease;
+}
+.case__link:hover { gap: 10px; color: var(--teal-dark); }
 
 /* Steps */
 .steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: s; }
