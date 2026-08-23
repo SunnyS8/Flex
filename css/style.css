@@ -134,6 +134,7 @@ img { max-width: 100%; display: block; }
   transition: gap .15s ease;
 }
 .case__link:hover { gap: 10px; color: var(--teal-dark); }
+.case__links { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 4px; }
 
 /* Steps */
 .steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: s; }
