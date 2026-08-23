@@ -18,7 +18,7 @@
   }
 
   // Scroll reveal
-  var reveals = document.querySelectorAll('.section, .card, .case, .step, .price, .review');
+  var reveals = document.querySelectorAll('.section, .card, .case, .step, .price, .review, .product, .tier');
   reveals.forEach(function (el) { el.classList.add('reveal'); });
 
   if ('IntersectionObserver' in window) {
