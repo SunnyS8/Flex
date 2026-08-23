@@ -157,6 +157,18 @@ img { max-width: 100%; display: block; }
 .price__list li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 800; }
 .price .btn { margin-top: auto; }
 
+/* Reviews */
+.grid--reviews { grid-template-columns: repeat(3, 1fr); }
+.review {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px;
+}
+.review__stars { color: #E0A82E; font-size: 18px; letter-spacing: 2px; }
+.review__text { color: var(--ink); font-size: 15px; line-height: 1.6; }
+.review__who { display: flex; flex-direction: column; gap: 2px; margin-top: auto; }
+.review__name { font-weight: 700; }
+.review__role { font-size: 13px; color: var(--muted); }
+
 /* Contacts */
 .contacts__inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
 .contacts__text { max-width: 640px; }
@@ -185,6 +197,7 @@ img { max-width: 100%; display: block; }
   .grid--cases { grid-template-columns: 1fr; }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .grid--pricing { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .grid--reviews { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 720px) {
   .nav__links { display: none; position: absolute; top: 64px; left: 0; right: 0;
@@ -196,6 +209,7 @@ img { max-width: 100%; display: block; }
   .grid--services { grid-template-columns: 1fr; }
   .card--wide { grid-column: span 1; }
   .steps { grid-template-columns: 1fr; }
+  .grid--reviews { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none; opacity: 1; transform: none; }
