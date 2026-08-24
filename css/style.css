@@ -184,6 +184,7 @@ h1, h2, h3 { font-family: var(--font-head); letter-spacing: -0.01em; }
 .case:hover { transform: translateY(-4px); border-color: var(--accent); }
 .case__shot { aspect-ratio: 16 / 9; background: var(--bg-soft); overflow: hidden; border-bottom: 1px solid var(--line); }
 .case__shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.case__shot--ph { display: grid; place-items: center; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, var(--bg-soft)), var(--bg-soft)); color: var(--comment); font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.04em; text-align: center; padding: 0 16px; }
 .case__body { padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
 .case__tag { font-family: var(--font-mono); font-size: 11.5px; color: var(--accent); border: 1px solid var(--line); padding: 3px 8px; border-radius: 6px; align-self: flex-start; }
 .case__body h3 { margin: 0; font-size: 17px; font-family: var(--font-head); }
