@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Фриланс-аналитика — дашборды и автоматизация под ключ | Flex</title>
+  <meta name="description" content="Аналитик и разработчик в одном лице: дашборды под ключ, автоматизация отчётности на Python и AI-ассистент для бизнеса. Бесплатный аудит 15 минут." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234fd1c5'/%3E%3Cpath d='M9 22V10l7 8 7-8v12' stroke='%2306231f' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/analytics.js" defer></script>
+</head>
+<body>
+  <canvas id="fluid" aria-hidden="true"></canvas>
+
+  <header class="nav" id="top">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">flex<span>.dev</span></a>
+      <nav class="nav__links" id="navLinks">
+        <a href="index.html#services">Услуги</a>
+        <a href="index.html#cases">Кейсы</a>
+        <a href="index.html#products">Продукты</a>
+        <a href="calculator.html">Бесплатно</a>
+        <a href="#audit">Аудит</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Светлая / тёмная тема">
+          <span class="theme-toggle__icon">◐</span>
+        </button>
+        <a href="https://t.me/SashaShyman" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Обсудить задачу</a>
+        <button class="nav__burger" id="navBurger" aria-label="Меню">≡</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO (Вариант А — малый бизнес) -->
+    <section class="hero">
+      <div class="hero__grid"></div>
+      <div class="hero__inner">
+        <div class="hero__text">
+          <span class="badge"><span class="badge__dot"></span> фриланс-аналитик · 8 лет в рознице и e-com</span>
+          <p class="hero__comment">// Автоматизация отчётности и дашборды под ключ</p>
+          <h1 class="hero__title">Дашборд под ключ —<br />и рутины в Excel<br />больше нет</h1>
+          <p class="hero__terminal"><span class="term-user">flex@studio</span><span class="term-sep">:~$</span> whoami</p>
+          <p class="hero__sub">
+            Собираю ваши данные в одно окно и убираю ручные отчёты через Python и API.
+            Аналитик и разработчик в одном лице — без найма отдела.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="https://t.me/SashaShyman" target="_blank" rel="noopener">Получить бесплатный аудит (15 мин)</a>
+            <a class="btn btn--ghost" href="calculator.html">Узнать потери на рутине →</a>
+          </div>
+          <ul class="hero__facts">
+            <li><strong>3–7 дн</strong><span>от брифа до результата</span></li>
+            <li><strong>без Excel</strong><span>отчёт готов к утру</span></li>
+            <li><strong>24/7</strong><span>AI-ассистент под бизнес</span></li>
+          </ul>
+        </div>
+        <div class="hero__media">
+          <div class="terminal">
+            <div class="terminal__bar">
+              <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+              <span class="terminal__title">flex@studio: ~</span>
+            </div>
+<pre class="terminal__body"><span class="term-cmd">$ cat offer.txt</span>
+<span class="k">dashboard</span>  продажи · реклама · склад — в 1 окне
+<span class="k">automation</span> Python-скрипты · без копипаста
+<span class="k">ai</span>          ассистент на ваших данных
+<span class="k">result</span>     утро = готовый отчёт</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ДВЕ НИШИ -->
+    <section class="section" id="niches">
+      <div class="container">
+        <h2 class="section__title">Под две задачи собственника</h2>
+        <p class="section__sub">Один исполнитель делает и аналитику, и код — дешевле агентства и быстрее найма.</p>
+        <div class="grid grid--services">
+          <article class="card">
+            <div class="card__head"><h3>Малый бизнес</h3><span class="card__tag">[автоматизация]</span></div>
+            <p>Дашборды и автоматические отчёты: продажи, реклама, склад — в одном окне, понятном руководителю. Ручной сводки из пяти таблиц больше нет.</p>
+          </article>
+          <article class="card">
+            <div class="card__head"><h3>Собственники</h3><span class="card__tag">[ai-ассистент]</span></div>
+            <p>Помощник, который знает ваш бизнес: отвечает 24/7, ведёт задачи и не болеет. Собираю на базе ваших данных, как AVA.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="section" id="problem">
+      <div class="container">
+        <h2 class="section__title">Где у вас течёт время</h2>
+        <p class="section__sub">Вы тратите вечер на сводку из пяти таблиц. Данные разъехались по Excel, Telegram и мессенджерам. Решения принимаете «на глаз», потому что собрать картину — отдельная работа.</p>
+        <p class="section__sub" style="color:var(--accent-2);">Так быть не должно. Отчёт должен быть готов к утру сам.</p>
+      </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="section" id="services">
+      <div class="container">
+        <h2 class="section__title">Что я делаю</h2>
+        <p class="section__sub">Три направления — от разового разбора до работающего сервиса.</p>
+        <div class="grid grid--services">
+          <article class="card">
+            <div class="card__head"><h3>Дашборд под ключ</h3><span class="card__tag">[bi]</span></div>
+            <p>Продажи, реклама, склад — в одном окне, понятном руководителю, без Excel и копипаста.</p>
+          </article>
+          <article class="card">
+            <div class="card__head"><h3>Автоматизация задач</h3><span class="card__tag">[python]</span></div>
+            <p>Выгрузки, сводки в Telegram, напоминания и интеграции через API — работает без вашего участия.</p>
+          </article>
+          <article class="card">
+            <div class="card__head"><h3>AI-ассистент</h3><span class="card__tag">[ai]</span></div>
+            <p>Отвечает на вопросы по вашим данным, как помощник, только дешевле и 24/7. Самохостинг — данные остаются у вас.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF -->
+    <section class="section" id="cases">
+      <div class="container">
+        <h2 class="section__title">Реальные кейсы, а не теория</h2>
+        <p class="section__sub">Два проекта, на которых видно результат.</p>
+        <div class="grid grid--cases">
+          <article class="case">
+            <div class="case__shot"><img src="assets/screenshots/nelikvid.png" alt="Nelikvid Dashboard — анализ неликвидов" loading="lazy" /></div>
+            <div class="case__body">
+              <span class="case__tag">Дашборд · 1С</span>
+              <h3>Nelikvid Dashboard — анализ неликвидов</h3>
+              <p>Анализ неликвидов из выгрузок 1С прямо в браузере: KPI-карточки, графики по складам, фильтры и экспорт отчёта в Excel без сервера.</p>
+              <span class="case__result">Результат: управление запасами по данным</span>
+            </div>
+          </article>
+          <article class="case">
+            <div class="case__shot"><img src="assets/screenshots/ava-portrait.jpg" alt="AVA — помощник руководителя" loading="lazy" /></div>
+            <div class="case__body">
+              <span class="case__tag">AI-агент · Telegram</span>
+              <h3>AVA — помощник руководителя</h3>
+              <p>Личный AI-помощник руководителя: голос, видео, долгосрочная память, ведёт расписание и напоминает о встречах. Самохостинг — данные остаются у вас.</p>
+              <span class="case__result">Результат: AI-ассистент под ключ</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJECTIONS -->
+    <section class="section" id="objections">
+      <div class="container">
+        <h2 class="section__title">Снимаю возражения</h2>
+        <p class="section__sub">Честно — до начала работы.</p>
+        <div class="grid grid--services">
+          <article class="card">
+            <div class="card__head"><h3>«Это дорого?»</h3><span class="card__tag">[цена]</span></div>
+            <p>Аудит бесплатный. Автоматизация окупается временем, которое вы перестаёте тратить на отчёты.</p>
+          </article>
+          <article class="card">
+            <div class="card__head"><h3>«Долго настраивать?»</h3><span class="card__tag">[сроки]</span></div>
+            <p>Часто запускаем за несколько дней, не недели.</p>
+          </article>
+          <article class="card">
+            <div class="card__head"><h3>«Данные в разных местах?»</h3><span class="card__tag">[источники]</span></div>
+            <p>Именно для этого — соберу их в одно окно.</p>
+          </article>
+          <article class="card">
+            <div class="card__head"><h3>«Можно без найма?»</h3><span class="card__tag">[команда]</span></div>
+            <p>Да. Я одна делаю и аналитику, и код.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section contacts" id="audit">
+      <div class="container contacts__inner">
+        <div class="contacts__text">
+          <h2 class="section__title">Узнайте, что автоматизировать в вашем бизнесе — бесплатно</h2>
+          <p class="section__sub">15-минутный аудит без обязательств. Онлайн или Ставрополь.</p>
+          <div class="contacts__links">
+            <a class="chip" href="https://t.me/SashaShyman" target="_blank" rel="noopener">Telegram: @SashaShyman</a>
+            <a class="chip" href="tel:+79887444848">Тел: +7 988 744-48-48</a>
+            <a class="chip" href="calculator.html">Бесплатный калькулятор потерь</a>
+          </div>
+        </div>
+        <a class="btn btn--primary btn--lg" href="https://t.me/SashaShyman" target="_blank" rel="noopener">Записаться на аудит 15 минут</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 Flex · Аналитик Сарычева А.Д. · <a href="#top">Наверх ↑</a></div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>window.ga = function () {};</script>
+  <script src="assets/fluid.js"></script>
+  <script src="assets/fluid-init.js"></script>
+</body>
+</html>
