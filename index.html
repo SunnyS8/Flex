@@ -1,63 +1,77 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flex — аналитика и автоматизация для бизнеса</title>
   <meta name="description" content="Flex — дашборды, автоматизация отчётности на Python и ИИ-выводы из данных. Аналитик Сарычева А.Д." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235B8A8C'/%3E%3Cpath d='M9 22V10l7 8 7-8v12' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234fd1c5'/%3E%3Cpath d='M9 22V10l7 8 7-8v12' stroke='%2306231f' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/analytics.js" defer></script>
 </head>
 <body>
+  <canvas id="fluid" aria-hidden="true"></canvas>
+
   <header class="nav" id="top">
-    <div class="container nav__inner">
-      <a class="logo" href="#top" aria-label="Flex">
-        <span class="logo__mark">F</span><span class="logo__text">Flex</span>
-      </a>
+    <div class="nav__inner">
+      <a href="#top" class="nav__logo">flex<span>.dev</span></a>
       <nav class="nav__links" id="navLinks">
         <a href="#services">Услуги</a>
-          <a href="#cases">Кейсы</a>
-          <a href="#reviews">Отзывы</a>
-          <a href="#products">Продукты</a>
-          <a href="#process">Как работаю</a>
+        <a href="#cases">Кейсы</a>
+        <a href="#products">Продукты</a>
+        <a href="#process">Процесс</a>
         <a href="#pricing">Цены</a>
         <a href="#contacts">Контакты</a>
       </nav>
-      <a class="btn btn--primary nav__cta" href="https://t.me/SashaShyman" target="_blank" rel="noopener">Обсудить задачу</a>
-      <button class="nav__burger" id="burger" aria-label="Меню" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Светлая / тёмная тема">
+          <span class="theme-toggle__icon">◐</span>
+        </button>
+        <a href="https://t.me/SashaShyman" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Обсудить задачу</a>
+        <button class="nav__burger" id="navBurger" aria-label="Меню">≡</button>
+      </div>
     </div>
   </header>
 
   <main>
     <!-- HERO -->
     <section class="hero">
-      <div class="container hero__inner">
+      <div class="hero__grid"></div>
+      <div class="hero__inner">
         <div class="hero__text">
-          <span class="badge">Аналитик · 8 лет в рознице и e-com</span>
+          <span class="badge"><span class="badge__dot"></span> аналитик · 8 лет в рознице и e-com</span>
+          <p class="hero__comment">// Аналитика и автоматизация для бизнеса</p>
           <h1 class="hero__title">Flex — аналитика<br />и автоматизация<br />для бизнеса</h1>
-          <p class="hero__lead">
+          <p class="hero__terminal"><span class="term-user">flex@studio</span><span class="term-sep">:~$</span> whoami</p>
+          <p class="hero__sub">
             Дашборды, автоматизация отчётности на Python и ИИ-выводы из данных —
             от разового разбора до готового сервиса за 3–7 дней.
           </p>
           <div class="hero__actions">
-            <a class="btn btn--primary" href="https://t.me/SashaShyman" target="_blank" rel="noopener">Обсудить задачу</a>
+            <a class="btn btn--primary" href="https://t.me/SashaShyman" target="_blank" rel="noopener">~/обсудить задачу</a>
             <a class="btn btn--ghost" href="#cases">Посмотреть кейсы</a>
           </div>
-          <ul class="hero__stack">
-            <li>SQL</li><li>Python</li><li>Power BI</li><li>Excel</li><li>Streamlit</li><li>LLM / ИИ</li>
+          <ul class="hero__facts">
+            <li><strong>+18%</strong><span>к марже после ABC</span></li>
+            <li><strong>30 сек</strong><span>от CSV до AI-отчёта</span></li>
+            <li><strong>3–7 дн</strong><span>от брифа до результата</span></li>
           </ul>
         </div>
-        <div class="hero__card">
-          <div class="glass">
-            <div class="stat"><span class="stat__num">+18%</span><span class="stat__label">к марже после ABC-анализа</span></div>
-            <div class="stat"><span class="stat__num">30 сек</span><span class="stat__label">от CSV до AI-отчёта</span></div>
-            <div class="stat"><span class="stat__num">3–7 дн</span><span class="stat__label">от брифа до результата</span></div>
+        <div class="hero__media">
+          <div class="terminal">
+            <div class="terminal__bar">
+              <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+              <span class="terminal__title">flex@studio: ~</span>
+            </div>
+<pre class="terminal__body"><span class="term-cmd">$ cat services.txt</span>
+<span class="k">analysis</span>    Анализ продаж · ABC/XYZ · маржа
+<span class="k">dashboards</span> Power BI · Excel · автообновление
+<span class="k">automation</span> Python-скрипты · без рутины
+<span class="k">ai</span>          LLM-боты · AI-инсайты
+<span class="k">streamlit</span>   сервисы под ключ</pre>
           </div>
         </div>
       </div>
@@ -66,34 +80,27 @@
     <!-- SERVICES -->
     <section class="section" id="services">
       <div class="container">
-        <div class="section__head">
-          <h2 class="section__title">Что я делаю</h2>
-          <p class="section__sub">Пять направлений — от разового анализа до продуктовой автоматизации.</p>
-        </div>
+        <h2 class="section__title">Что я делаю</h2>
+        <p class="section__sub">Пять направлений — от разового анализа до продуктовой автоматизации.</p>
         <div class="grid grid--services">
           <article class="card">
-            <div class="card__ic">📊</div>
-            <h3>Анализ продаж</h3>
+            <div class="card__head"><h3>Анализ продаж</h3><span class="card__tag">[анализ]</span></div>
             <p>WB / Ozon, розничные сети: ABC/XYZ, маржа, оборачиваемость, промо-оценка и сегментация клиентов.</p>
           </article>
           <article class="card">
-            <div class="card__ic">📈</div>
-            <h3>Дашборды</h3>
+            <div class="card__head"><h3>Дашборды</h3><span class="card__tag">[bi]</span></div>
             <p>Power BI и Excel с автообновлением: KPI, динамика, срезы по категориям, регионам и периодам.</p>
           </article>
           <article class="card">
-            <div class="card__ic">⚙️</div>
-            <h3>Автоматизация отчётности</h3>
+            <div class="card__head"><h3>Автоматизация отчётности</h3><span class="card__tag">[python]</span></div>
             <p>Python-скрипты, которые сами забирают выгрузки и собирают отчёт — без рутины и копипаста.</p>
           </article>
           <article class="card">
-            <div class="card__ic">🤖</div>
-            <h3>AI / LLM-интеграции</h3>
+            <div class="card__head"><h3>AI / LLM-интеграции</h3><span class="card__tag">[ai]</span></div>
             <p>Чат-боты на базе данных, AI-инсайты из отчётов и автогенерация текстовых выводов для бизнеса.</p>
           </article>
           <article class="card card--wide">
-            <div class="card__ic">🧩</div>
-            <h3>Streamlit-сервисы под ключ</h3>
+            <div class="card__head"><h3>Streamlit-сервисы под ключ</h3><span class="card__tag">[web]</span></div>
             <p>Веб-приложения для анализа и визуализации: загрузил данные — получил отчёт и рекомендации. С оплатой и личным кабинетом.</p>
           </article>
         </div>
@@ -101,12 +108,10 @@
     </section>
 
     <!-- CASES -->
-    <section class="section section--alt" id="cases">
+    <section class="section" id="cases">
       <div class="container">
-        <div class="section__head">
-          <h2 class="section__title">Кейсы</h2>
-          <p class="section__sub">Реальные проекты: от SaaS до дашбордов и лендингов.</p>
-        </div>
+        <h2 class="section__title">Кейсы</h2>
+        <p class="section__sub">Реальные проекты: от SaaS до дашбордов и лендингов.</p>
         <div class="grid grid--cases">
           <article class="case">
             <div class="case__shot"><img src="assets/screenshots/bizview-main.png" alt="BizView — интерфейс анализа продаж" loading="lazy" /></div>
@@ -154,43 +159,13 @@
       </div>
     </section>
 
-    <!-- REVIEWS -->
-    <section class="section section--alt" id="reviews">
-      <div class="container">
-        <div class="section__head">
-          <h2 class="section__title">Отзывы клиентов</h2>
-          <p class="section__sub">Реальные результаты для малого бизнеса, салонов и фрилансеров.</p>
-        </div>
-        <div class="grid grid--reviews">
-          <article class="review">
-            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
-            <p class="review__text">«Flex разобрал наши продажи за вечер и нашёл, что 20% выручки уходило в неэффективные акции. Теперь дашборд смотрим каждое утро — решения принимаем по данным.»</p>
-            <div class="review__who"><span class="review__name">Ирина</span><span class="review__role">владелица сети салонов красоты, Ставрополь</span></div>
-          </article>
-          <article class="review">
-            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
-            <p class="review__text">«Заказал разбор выгрузки с WB — получил ABC-анализ и рекомендации по закупке. Маржа выросла уже через месяц, а время на отчёты сократилось в разы.»</p>
-            <div class="review__who"><span class="review__name">Дмитрий</span><span class="review__role">продавец на маркетплейсах</span></div>
-          </article>
-          <article class="review">
-            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
-            <p class="review__text">«Сделали лендинг с онлайн-записью на тренировки. Клиенты записываются сами, не нужно переписываться вручную — освободилось время для работы.»</p>
-            <div class="review__who"><span class="review__name">Анна</span><span class="review__role">персональный тренер</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <!-- PRODUCTS -->
-    <section class="section section--alt" id="products">
+    <section class="section" id="products">
       <div class="container">
-        <div class="section__head">
-          <h2 class="section__title">Продукты</h2>
-          <p class="section__sub">Готовые решения — подключаете и получаете обновления с поддержкой.</p>
-        </div>
+        <h2 class="section__title">Продукты</h2>
+        <p class="section__sub">Готовые решения — подключаете и получаете обновления с поддержкой.</p>
         <div class="grid grid--products">
           <article class="product">
-            <div class="product__ic">🧮</div>
             <h3>Флюкс — калькуляторы потолков и стен</h3>
             <p>Два калькулятора (натяжные потолки и бесшовные стены СИС) с расчётом по плану через ИИ, личным кабинетом и PDF-сметой. Для салонов, дилеров и замерщиков.</p>
             <ul class="product__feat">
@@ -202,7 +177,6 @@
             <a class="btn btn--ghost" href="flux.html">Посадочная для салонов →</a>
           </article>
           <article class="product">
-            <div class="product__ic">💬</div>
             <h3>Роман — AI health-коуч</h3>
             <p>Telegram-бот для тренеров: ведёт клиентов 24/7, анализирует питание (600+ продуктов), отвечает голосом и видео, помнит цели.</p>
             <ul class="product__feat">
@@ -214,34 +188,28 @@
             <a class="btn btn--ghost" href="roman.html">Посадочная для тренеров →</a>
           </article>
         </div>
-
-
       </div>
     </section>
 
     <!-- PROCESS -->
     <section class="section" id="process">
       <div class="container">
-        <div class="section__head">
-          <h2 class="section__title">Как работаю</h2>
-          <p class="section__sub">Прозрачно и без лишних шагов.</p>
+        <h2 class="section__title">Как работаю</h2>
+        <p class="section__sub">Прозрачно и без лишних шагов.</p>
+        <div class="steps">
+          <div class="step"><span class="step__n">1</span><h3>Бриф</h3><p>Обсуждаем задачу, источники данных и формат результата.</p></div>
+          <div class="step"><span class="step__n">2</span><h3>Расчёт</h3><p>Фиксируем объём, сроки и стоимость — без скрытых доплат.</p></div>
+          <div class="step"><span class="step__n">3</span><h3>Реализация</h3><p>Дашборд, скрипт или сервис с проверкой на ваших данных.</p></div>
+          <div class="step"><span class="step__n">4</span><h3>Поддержка</h3><p>Правки, обучение команды и сопровождение после сдачи.</p></div>
         </div>
-        <ol class="steps">
-          <li class="step"><span class="step__n">1</span><h3>Бриф</h3><p>Обсуждаем задачу, источники данных и формат результата.</p></li>
-          <li class="step"><span class="step__n">2</span><h3>Расчёт</h3><p>Фиксируем объём, сроки и стоимость — без скрытых доплат.</p></li>
-          <li class="step"><span class="step__n">3</span><h3>Реализация</h3><p>Дашборд, скрипт или сервис с проверкой на ваших данных.</p></li>
-          <li class="step"><span class="step__n">4</span><h3>Поддержка</h3><p>Правки, обучение команды и сопровождение после сдачи.</p></li>
-        </ol>
       </div>
     </section>
 
     <!-- PRICING -->
-    <section class="section section--alt" id="pricing">
+    <section class="section" id="pricing">
       <div class="container">
-        <div class="section__head">
-          <h2 class="section__title">Цены</h2>
-          <p class="section__sub">Фиксированные пакеты — итоговая стоимость после брифа.</p>
-        </div>
+        <h2 class="section__title">Цены</h2>
+        <p class="section__sub">Фиксированные пакеты — итоговая стоимость после брифа.</p>
         <div class="grid grid--pricing">
           <article class="price">
             <h3 class="price__name">Экспресс-анализ</h3>
@@ -272,7 +240,7 @@
               <li>AI / LLM-интеграция</li>
               <li>Сервис или скрипт + поддержка</li>
             </ul>
-            <a class="btn btn--ghost" href="https://t.me/SashaShyman" target="_blank" rel="noopener">Заказать</a>
+            <a class="btn btn--ghost" href="https://t.me/SunnyS8" target="_blank" rel="noopener">Заказать</a>
           </article>
         </div>
       </div>
@@ -295,12 +263,12 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer__inner">
-      <span>© 2026 Flex · Аналитик Сарычева А.Д.</span>
-      <a href="#top">Наверх ↑</a>
-    </div>
+    <div class="container">© 2026 Flex · Аналитик Сарычева А.Д. · <a href="#top">Наверх ↑</a></div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script>window.ga = function () {};</script>
+  <script src="assets/fluid.js"></script>
+  <script src="assets/fluid-init.js"></script>
 </body>
 </html>
