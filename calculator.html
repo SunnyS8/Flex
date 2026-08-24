@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Калькулятор потерь на рутине — Flex</title>
+<meta name="description" content="Бесплатно: узнайте, сколько часов и денег вы теряете на ручной отчётности, и что автоматизировать первым." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234fd1c5'/%3E%3Cpath d='M9 22V10l7 8 7-8v12' stroke='%2306231f' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0b0d12;
+    --glass: rgba(255,255,255,0.05);
+    --glass-brd: rgba(255,255,255,0.12);
+    --txt: #e6e9f0;
+    --muted: #8b93a7;
+    --accent: #4fd1c5;
+    --accent2: #7ee787;
+    --warn: #ffb454;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+    color: var(--txt);
+    background:
+      radial-gradient(1200px 600px at 15% 0%, rgba(79,209,197,0.10), transparent 60%),
+      radial-gradient(1000px 700px at 90% 100%, rgba(126,231,135,0.10), transparent 55%),
+      var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    width: 100%; max-width: 720px;
+    background: var(--glass);
+    border: 1px solid var(--glass-brd);
+    border-radius: 18px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+  .head { padding: 26px 28px 18px; border-bottom: 1px solid var(--glass-brd); }
+  .tag { font-size: 12px; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+  h1 { margin: 8px 0 4px; font-size: 22px; line-height: 1.25; }
+  .sub { color: var(--muted); font-size: 13px; }
+  .body { padding: 22px 28px 28px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .field input {
+    width: 100%; padding: 11px 12px; font-size: 15px;
+    background: rgba(0,0,0,0.25); color: var(--txt);
+    border: 1px solid var(--glass-brd); border-radius: 10px;
+    font-family: inherit;
+  }
+  .field input:focus { outline: none; border-color: var(--accent); }
+  .result {
+    margin-top: 20px; padding: 18px; border-radius: 14px;
+    background: rgba(79,209,197,0.06); border: 1px solid rgba(79,209,197,0.18);
+  }
+  .big { font-size: 30px; font-weight: 700; color: var(--warn); }
+  .big.soft { color: var(--accent); font-size: 22px; }
+  .rrow { display: flex; justify-content: space-between; align-items: baseline; margin: 8px 0; }
+  .rlabel { color: var(--muted); font-size: 13px; }
+  ul.tasks { margin: 14px 0 0; padding-left: 18px; }
+  ul.tasks li { margin: 6px 0; font-size: 13.5px; }
+  .cta { margin-top: 22px; text-align: center; }
+  .cta a {
+    display: inline-block; text-decoration: none;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    color: #06231f; font-weight: 700; font-size: 15px;
+    padding: 14px 26px; border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(79,209,197,0.25);
+  }
+  .cta a:hover { filter: brightness(1.05); }
+  .cta .note { display:block; margin-top: 10px; color: var(--muted); font-size: 12px; }
+  .back { display:block; text-align:center; margin-top:18px; font-size:12px; }
+  .back a { color: var(--muted); }
+  .back a:hover { color: var(--accent); }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="head">
+      <div class="tag">Бесплатно · 2 минуты</div>
+      <h1>Сколько вы теряете на ручной отчётности</h1>
+      <div class="sub">Впишите свои цифры — узнаете часы и деньги, которые вернёт автоматизация.</div>
+    </div>
+    <div class="body">
+      <div class="grid">
+        <div class="field">
+          <label for="hours">Часов в неделю на отчёты</label>
+          <input id="hours" type="number" min="0" step="0.5" value="6" />
+        </div>
+        <div class="field">
+          <label for="rate">Ценность вашего часа, ₽</label>
+          <input id="rate" type="number" min="0" step="100" value="1500" />
+        </div>
+        <div class="field">
+          <label for="sources">Источников данных (таблицы, ТГ, CRM)</label>
+          <input id="sources" type="number" min="1" step="1" value="4" />
+        </div>
+        <div class="field">
+          <label for="team">Сотрудников на рутине, чел.</label>
+          <input id="team" type="number" min="0" step="1" value="1" />
+        </div>
+      </div>
+
+      <div class="result" id="result">
+        <div class="rrow">
+          <span class="rlabel">Теряете времени в месяц</span>
+          <span class="big" id="outHours">—</span>
+        </div>
+        <div class="rrow">
+          <span class="rlabel">Теряете денег в месяц</span>
+          <span class="big" id="outMoney">—</span>
+        </div>
+        <div class="rrow">
+          <span class="rlabel">За год это</span>
+          <span class="big soft" id="outYear">—</span>
+        </div>
+        <div style="margin-top:14px; color:var(--muted); font-size:13px;">Топ-3 задачи, которые автоматизировать прямо сейчас:</div>
+        <ul class="tasks" id="tasks"></ul>
+      </div>
+
+      <div class="cta">
+        <a id="signup" href="https://t.me/SashaShyman">Получить разбор этих задач под ключ →</a>
+        <span class="note">Бесплатный аудит 15 минут · без обязательств · @SashaShyman</span>
+      </div>
+      <div class="back"><a href="index.html">← На главную Flex</a></div>
+    </div>
+  </div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  function fmt(n){ return Math.round(n).toLocaleString('ru-RU'); }
+
+  function compute() {
+    const hours = parseFloat($('hours').value) || 0;
+    const rate  = parseFloat($('rate').value) || 0;
+    const src   = parseInt($('sources').value) || 1;
+    const team  = parseInt($('team').value) || 0;
+
+    const weeks = 4.33;
+    const hoursMonth = hours * weeks * (team > 0 ? team : 1);
+    const moneyMonth = hoursMonth * rate;
+    const moneyYear = moneyMonth * 12;
+
+    $('outHours').textContent = fmt(hoursMonth) + ' ч/мес';
+    $('outMoney').textContent = fmt(moneyMonth) + ' ₽/мес';
+    $('outYear').textContent  = fmt(moneyYear) + ' ₽/год';
+
+    const tasks = [
+      'Ежедневная сводка в Telegram — без открытия Excel по утрам.',
+      'Дашборд продаж/загрузки в одном окне вместо ' + src + ' разрозненных таблиц.',
+      'Автоматические выгрузки из источников вместо ручного копипаста.'
+    ];
+    if (src >= 3) tasks.push('Объединение всех источников в единый поток данных.');
+    if (team >= 2) tasks.push('Распределение рутины между сотрудниками без дублей.');
+
+    $('tasks').innerHTML = tasks.map(t => '<li>' + t + '</li>').join('');
+  }
+
+  ['hours','rate','sources','team'].forEach(id => $(id).addEventListener('input', compute));
+  compute();
+</script>
+</body>
+</html>
