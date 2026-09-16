@@ -93,15 +93,13 @@
       <div class="capture">
         <h3>Получить чек-лист на почту + бонус</h3>
         <p>Пришлю PDF-версию чек-листа и мини-гайд «С чего начать сборку ассистента» — бесплатно.</p>
-        <!-- ЗАМЕНИ XXXXXXXXX на свой Formspree-form-id: https://formspree.io/f/XXXXXXXXX -->
-        <form action="https://formspree.io/f/XXXXXXXXX" method="POST">
+        <form id="leadForm">
           <div class="cinline">
             <input type="email" name="email" placeholder="ваш@email.ru" required />
-            <input type="hidden" name="_subject" value="Лид: чек-лист AI-готовности" />
-            <input type="hidden" name="source" value="ai-checklist" />
-            <button class="btn" type="submit">Прислать чек-лист</button>
+            <button class="btn" type="submit" id="leadBtn">Прислать чек-лист</button>
           </div>
         </form>
+        <div id="leadMsg" style="margin-top:10px; font-size:13px; display:none;"></div>
         <div class="alt">
           <a href="https://t.me/SashaShyman">или обсудить сборку ассистента в Telegram →</a>
         </div>
@@ -127,6 +125,48 @@
       advice.textContent = 'Шаг 1: опишите рутину (даже в черновике). Без этого ИИ будет гадать. Помогу структурировать — напишите в ТГ.'; result.classList.remove('ok'); }
   }
   boxes.forEach(b => b.addEventListener('change', score));
+
+  // Lead capture form
+  document.getElementById('leadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('leadBtn');
+    const msg = document.getElementById('leadMsg');
+    const email = this.querySelector('[name=email]').value;
+
+    btn.disabled = true;
+    btn.textContent = 'Отправка...';
+
+    let n = 0;
+    boxes.forEach(b => { if (b.checked) n++; });
+
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'ai-checklist',
+          message: `Чек-лист AI-готовности: ${n}/10 пунктов отмечено`,
+        }),
+      });
+
+      if (res.ok) {
+        msg.style.display = 'block';
+        msg.style.color = 'var(--accent2)';
+        msg.textContent = '✓ Чек-лист отправлен! Проверьте почту.';
+        btn.textContent = 'Отправлено ✓';
+        this.querySelector('[name=email]').value = '';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      msg.style.display = 'block';
+      msg.style.color = 'var(--warn)';
+      msg.textContent = 'Не удалось отправить. Напишите в Telegram: @SashaShyman';
+      btn.disabled = false;
+      btn.textContent = 'Прислать чек-лист';
+    }
+  });
 </script>
 </body>
 </html>

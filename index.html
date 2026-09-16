@@ -313,13 +313,20 @@
       <div class="container contacts__inner">
         <div class="contacts__text">
           <h2 class="section__title">Обсудим вашу задачу</h2>
-          <p class="section__sub">Напишите в Telegram или на почту — отвечаю в течение дня. Работаю удалённо, РФ.</p>
+          <p class="section__sub">Оставьте заявку — отвечу в течение дня с предварительной оценкой. Работаю удалённо, РФ.</p>
           <div class="contacts__links">
             <a class="chip" href="https://t.me/SashaShyman" target="_blank" rel="noopener">Telegram: @SashaShyman</a>
             <a class="chip" href="mailto:shymans8@gmail.com">Email: shymans8@gmail.com</a>
           </div>
         </div>
-        <a class="btn btn--primary btn--lg" href="https://t.me/SashaShyman" target="_blank" rel="noopener">Оставить заявку</a>
+        <form id="contactForm" class="contact-form">
+          <input type="text" name="name" placeholder="Ваше имя" class="contact-input" />
+          <input type="email" name="email" placeholder="Email" class="contact-input" />
+          <input type="tel" name="phone" placeholder="Телефон (необязательно)" class="contact-input" />
+          <textarea name="message" placeholder="Что нужно автоматизировать?" rows="3" class="contact-input"></textarea>
+          <button type="submit" class="btn btn--primary btn--lg" id="contactBtn">Отправить заявку</button>
+          <div id="contactMsg" style="margin-top:10px; font-size:13px; display:none;"></div>
+        </form>
       </div>
     </section>
   </main>
@@ -332,5 +339,46 @@
   <script>window.ga = function () {};</script>
   <script src="assets/fluid.js"></script>
   <script src="assets/fluid-init.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contactBtn');
+      const msg = document.getElementById('contactMsg');
+      const form = this;
+
+      btn.disabled = true;
+      btn.textContent = 'Отправка...';
+
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: form.querySelector('[name=name]').value,
+            email: form.querySelector('[name=email]').value,
+            phone: form.querySelector('[name=phone]').value,
+            message: form.querySelector('[name=message]').value,
+            source: 'contact-form',
+          }),
+        });
+
+        if (res.ok) {
+          msg.style.display = 'block';
+          msg.style.color = '#7ee787';
+          msg.textContent = '✓ Заявка отправлена! Свяжусь с вами в течение дня.';
+          btn.textContent = 'Отправлено ✓';
+          form.reset();
+        } else {
+          throw new Error('Server error');
+        }
+      } catch (err) {
+        msg.style.display = 'block';
+        msg.style.color = '#ffb454';
+        msg.textContent = 'Не удалось отправить. Напишите в Telegram: @SashaShyman';
+        btn.disabled = false;
+        btn.textContent = 'Отправить заявку';
+      }
+    });
+  </script>
 </body>
 </html>

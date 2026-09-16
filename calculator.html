@@ -139,14 +139,12 @@
       <div class="capture" style="margin-top:22px; padding:18px; border-radius:14px; background:rgba(126,231,135,0.05); border:1px solid rgba(126,231,135,0.18);">
         <div style="font-size:15px; font-weight:700; color:var(--accent2);">Оставьте email — пришлю разбор и черновик автоматизации</div>
         <div style="color:var(--muted); font-size:13px; margin:6px 0 12px;">Без спама. Один полезный email с планом внедрения.</div>
-        <!-- ЗАМЕНИ XXXXXXXXX на свой Formspree-form-id: https://formspree.io/f/XXXXXXXXX -->
-        <form action="https://formspree.io/f/XXXXXXXXX" method="POST" style="display:flex; gap:10px; flex-wrap:wrap;">
+        <form id="leadForm" style="display:flex; gap:10px; flex-wrap:wrap;">
           <input type="email" name="email" placeholder="ваш@email.ru" required
                  style="flex:1 1 220px; padding:12px; font-size:14px; font-family:inherit; background:rgba(0,0,0,0.25); color:var(--txt); border:1px solid var(--glass-brd); border-radius:10px;" />
-          <input type="hidden" name="_subject" value="Лид: калькулятор рутины" />
-          <input type="hidden" name="source" value="routine-calculator" />
-          <button type="submit" style="border:0; cursor:pointer; background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#06231f; font-weight:700; font-size:14px; padding:12px 20px; border-radius:10px; font-family:inherit;">Прислать разбор</button>
+          <button type="submit" id="leadBtn" style="border:0; cursor:pointer; background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#06231f; font-weight:700; font-size:14px; padding:12px 20px; border-radius:10px; font-family:inherit;">Прислать разбор</button>
         </form>
+        <div id="leadMsg" style="margin-top:10px; font-size:13px; display:none;"></div>
         <div style="text-align:center; margin-top:14px;"><a href="ai-checklist.html" style="color:var(--accent); text-decoration:none; font-size:13px; font-weight:600;">Есть бизнес-ассистент? Пройдите чек-лист AI-готовности →</a></div>
       </div>
       <div class="back"><a href="index.html">← На главную Flexs</a></div>
@@ -185,6 +183,48 @@
 
   ['hours','rate','sources','team'].forEach(id => $(id).addEventListener('input', compute));
   compute();
+
+  // Lead capture form
+  document.getElementById('leadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('leadBtn');
+    const msg = document.getElementById('leadMsg');
+    const email = this.querySelector('[name=email]').value;
+
+    btn.disabled = true;
+    btn.textContent = 'Отправка...';
+
+    const calcData = `Часов/нед: ${$('hours').value}, ₽/час: ${$('rate').value}, Источников: ${$('sources').value}, Команда: ${$('team').value}\nПотери: ${$('outHours').textContent} / ${$('outMoney').textContent} / ${$('outYear').textContent}`;
+
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'calculator',
+          message: 'Заявка с калькулятора рутины',
+          calculator_data: calcData,
+        }),
+      });
+
+      if (res.ok) {
+        msg.style.display = 'block';
+        msg.style.color = 'var(--accent2)';
+        msg.textContent = '✓ Разбор отправлен! Проверьте почту или напишите мне в Telegram.';
+        btn.textContent = 'Отправлено ✓';
+        this.querySelector('[name=email]').value = '';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      msg.style.display = 'block';
+      msg.style.color = 'var(--warn)';
+      msg.textContent = 'Не удалось отправить. Напишите в Telegram: @SashaShyman';
+      btn.disabled = false;
+      btn.textContent = 'Прислать разбор';
+    }
+  });
 </script>
 </body>
 </html>

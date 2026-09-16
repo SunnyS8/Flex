@@ -257,6 +257,38 @@ h1, h2, h3 { font-family: var(--font-head); letter-spacing: -0.01em; }
 .chip { font-family: var(--font-mono); font-size: 13.5px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; color: var(--text); transition: border-color 0.15s ease, color 0.15s ease; }
 .chip:hover { border-color: var(--accent); color: var(--accent); }
 
+/* ---------- Contact Form ---------- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 320px;
+  max-width: 400px;
+}
+.contact-input {
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: var(--font-body);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  transition: border-color 0.15s ease;
+  resize: vertical;
+}
+.contact-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.contact-input::placeholder {
+  color: var(--muted);
+}
+.contact-form .btn { align-self: stretch; }
+@media (max-width: 860px) {
+  .contacts__inner { flex-direction: column; text-align: center; }
+  .contact-form { min-width: unset; max-width: unset; width: 100%; }
+}
+
 /* ---------- Free tool (lead magnet) ---------- */
 .lead { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 36px; align-items: center; }
 .lead__text .badge { margin-bottom: 14px; }
